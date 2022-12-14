@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Skydash Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{% static 'admin/vendors/feather/feather.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/vendors/ti-icons/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/vendors/css/vendor.bundle.base.css' %}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="{% static 'admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/vendors/ti-icons/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/js/select.dataTables.min.css' %}" type="text/css" >
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{% static 'admin/css/vertical-layout-light/style.css' %}">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="{% static 'admin/images/favicon.png' %}" />
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/gijgo.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+  </head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="#"><img src="" class="mr-2"/>Admin</a>
+       
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>
+        {% comment %} <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="icon-search"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul> {% endcomment %}
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                <img src="https://img.icons8.com/ios/18/undefined/settings--v1.png"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+             
+              <a class="dropdown-item" href="{% url 'admin_logout' %}">
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+          
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+     
+   
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin_dashboard' %}">
+                <img src="https://img.icons8.com/doodle/27/undefined/home-office.png"/>&nbsp;&nbsp;
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <img src="https://img.icons8.com/plasticine/35/undefined/teacher.png"/>&nbsp;&nbsp;
+              <span class="menu-title">Faculty</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_add_faculty' %}">Add Faculty</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_manage_faculty' %}">Manage Faculty</a></li>
+                   </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+                <img src="https://img.icons8.com/external-tulpahn-outline-color-tulpahn/28/undefined/external-student-back-to-school-tulpahn-outline-color-tulpahn.png"/>&nbsp;&nbsp;
+              <span class="menu-title">Student</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="form-elements">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="{% url 'admin_add_student' %}">Add Student</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'admin_manage_student' %}">Manage Student</a></li>
+                
+            </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+                <img src="https://img.icons8.com/external-itim2101-lineal-color-itim2101/28/undefined/external-hostel-travel-itim2101-lineal-color-itim2101.png"/>&nbsp;&nbsp;
+              <span class="menu-title">Hostel</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="charts">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_add_hostel' %}">Add Hostel</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_manage_hostel' %}">Manage Hostel</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+                <img src="https://img.icons8.com/office/26/undefined/bus.png"/>&nbsp;&nbsp;
+              <span class="menu-title">Transport</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="tables">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_add_transport' %}">Add Transport</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_manage_transport' %}">Manage Transport</a></li>
+              
+            </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+                <img src="https://img.icons8.com/office/26/undefined/comments.png"/>&nbsp;&nbsp;
+              <span class="menu-title">Feedback System</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="icons">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_faculty_feedback' %}">Faculty Feedback</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_hostel_facilities_feedback' %}">Hostel Facilities<br>Feedback</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_transport_facilities_feedback' %}">Transport Facilities<br> Feedback</a></li>
+            </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                <img src="https://img.icons8.com/office/25/undefined/graph.png"/>&nbsp; &nbsp;
+              <span class="menu-title">Feedback Analysis</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_faculty_analysis' %}">Faculty Feedback<br> Analysis</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_hostel_analysis' %}">Hostel Feedback<br> Analysis</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_transport_analysis' %}">Transport Feedback<br> Analysis</a></li> 
+            </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+   
+        <div class="container" >
+          <div class="row" >
+            <div class="col-lg-12 col-xl-12 grid-margin stretch-card">
+              <div class="table-responsive pt-3 pl-5">
+                <table class="table table-strip table-bordered">
+                    <th colspan="4">
+                        <center><h4 class="card-title pr-5" style="color: rgb(45, 62, 219);">Student Opinion</h4> </center>
+                    </th>
+                     <tbody>
+                      {% for f in fed %}
+                        <tr>
+                          <td>
+                              1.Passion And Enthusiasm To Teach
+                              {% if f.passion_and_enthusiasm_to_teach == 1 %}
+                                    
+                              <span class="fa fa-star checked" style="color:orange"></span>
+                               
+                               {% endif %}
+                               {% if f.passion_and_enthusiasm_to_teach == 2 %}
+                              
+                               <span class="fa fa-star checked" style="color:orange"></span>
+                               <span class="fa fa-star checked" style="color:orange"></span>
+                              
+
+                               {% endif %}
+                              {% if f.passion_and_enthusiasm_to_teach == 3 %}
+                              
+                              <span class="fa fa-star checked" style="color:orange"></span>
+                              <span class="fa fa-star checked" style="color:orange"></span>
+                              <span class="fa fa-star checked" style="color:orange"></span>
+                                     
+                               
+                               {% endif %}
+                               {% if f.passion_and_enthusiasm_to_teach == 4 %}
+                              
+                               <span class="fa fa-star checked" style="color:orange"></span>
+                               <span class="fa fa-star checked" style="color:orange"></span>
+                               <span class="fa fa-star checked" style="color:orange"></span>
+                               <span class="fa fa-star checked" style="color:orange"></span>
+                                
+                               {% endif %}
+                               {% if f.passion_and_enthusiasm_to_teach == 5 %}
+                              
+                              <span class="fa fa-star checked" style="color:orange"></span>
+                              <span class="fa fa-star checked" style="color:orange"></span>
+                              <span class="fa fa-star checked" style="color:orange"></span>
+                              <span class="fa fa-star checked" style="color:orange"></span>
+                              <span class="fa fa-star checked" style="color:orange"></span>
+                                     
+                               
+                               {% endif %}
+                          </td>
+                          <td>
+                              6.Quality of lillustrative example
+                              {% if f.quality_of_illustrative_example == 1 %}
+                                    
+                                    <span class="fa fa-star checked" style="color:orange"></span>
+                                     
+                                     {% endif %}
+                                     {% if f.quality_of_illustrative_example == 2 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                    
+ 
+                                     {% endif %}
+                                    {% if f.quality_of_illustrative_example == 3 %}
+                                    
+                                    <span class="fa fa-star checked" style="color:orange"></span>
+                                    <span class="fa fa-star checked" style="color:orange"></span>
+                                    <span class="fa fa-star checked" style="color:orange"></span>
+                                    
+                                     
+                                     {% endif %}
+                                     {% if f.quality_of_illustrative_example == 4 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                    
+                                      
+                                     {% endif %}
+                                     {% if f.quality_of_illustrative_example == 5 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     
+                                     
+                                     {% endif %}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                              2.Subject f.subject_knowledge
+                                 {% if f.subject_knowledge == 1 %}
+                                    
+                                    <span class="fa fa-star checked" style="color:orange"></span>
+                                     
+                                     {% endif %}
+                                     {% if f.subject_knowledge == 2 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                    
+ 
+                                     {% endif %}
+                                    {% if f.subject_knowledge == 3 %}
+                                    
+                                    <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     
+                                     {% endif %}
+                                     {% if f.subject_knowledge == 4 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                    
+                                      
+                                     {% endif %}
+                                     {% if f.subject_knowledge == 5 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     
+                                     {% endif %}
+                          </td>
+                          <td>
+                            7.Regularity punctuality and uniform coverage of syllabus
+                            {% if f.regularity_punctuality_and_uniform_coverage_of_syllabus == 1 %}
+                                    
+                            <span class="fa fa-star checked" style="color:orange"></span>
+                                     
+                                     {% endif %}
+                                     {% if f.regularity_punctuality_and_uniform_coverage_of_syllabus == 2 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                    
+ 
+                                     {% endif %}
+                                    {% if f.regularity_punctuality_and_uniform_coverage_of_syllabus == 3 %}
+                                    
+                                    <span class="fa fa-star checked" style="color:orange"></span>
+                                    <span class="fa fa-star checked" style="color:orange"></span>
+                                    <span class="fa fa-star checked" style="color:orange"></span>
+
+                                     
+                                     {% endif %}
+                                     {% if f.regularity_punctuality_and_uniform_coverage_of_syllabus == 4 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+
+                                    
+                                      
+                                     {% endif %}
+                                     {% if f.regularity_punctuality_and_uniform_coverage_of_syllabus == 5 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+
+                                     
+                                     {% endif %}
+                          </td>
+                        </tr>
+                        <tr>
+                       
+                          <td>
+                            3.Clarity and Emphasis on Concept
+                            {% if f.clarity_and_emphasis_on_concept == 1 %}
+                                    
+                                    <span class="fa fa-star checked" style="color:orange"></span>
+
+                                     
+                                     {% endif %}
+                                     {% if f.clarity_and_emphasis_on_concept == 2 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+
+                                    
+ 
+                                     {% endif %}
+                                    {% if f.clarity_and_emphasis_on_concept == 3 %}
+                                    
+                                    <span class="fa fa-star checked" style="color:orange"></span>
+                                    <span class="fa fa-star checked" style="color:orange"></span>
+                                    <span class="fa fa-star checked" style="color:orange"></span>
+
+                                     
+                                     {% endif %}
+                                     {% if f.clarity_and_emphasis_on_concept == 4 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+
+                                    
+                                      
+                                     {% endif %}
+                                     {% if f.clarity_and_emphasis_on_concept == 5 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+
+                                     
+                                     {% endif %}
+                          </td>
+                          <td>
+                            8.Discipline and control over the class
+                            {% if f.discipline_and_control_over_the_class == 1 %}
+                                    
+                            <span class="fa fa-star checked" style="color:orange"></span>
+                            
+                                     
+                                     {% endif %}
+                                     {% if f.discipline_and_control_over_the_class == 2 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                    
+ 
+                                     {% endif %}
+                                    {% if f.discipline_and_control_over_the_class == 3 %}
+                                    
+                                    <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     
+                                     
+                                     {% endif %}
+                                     {% if f.discipline_and_control_over_the_class == 4 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     
+                                    
+                                      
+                                     {% endif %}
+                                     {% if f.discipline_and_control_over_the_class == 5 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     
+                                     {% endif %}
+                          </td>
+                        </tr>
+                        <tr>
+                        
+                          <td>
+                            4.Motivation and Inspiration the Student
+                            {% if f.motivation_and_inspiration_the_student == 1 %}
+                                    
+                            
+                              <span class="fa fa-star checked" style="color:orange"></span>
+                             
+                             {% endif %}
+                             {% if f.motivation_and_inspiration_the_student == 2 %}
+                            
+                             <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                            
+
+                             {% endif %}
+                            {% if f.motivation_and_inspiration_the_student == 3 %}
+                            
+                            <span class="fa fa-star checked" style="color:orange"></span>
+                            <span class="fa fa-star checked" style="color:orange"></span>
+                            <span class="fa fa-star checked" style="color:orange"></span>
+                             
+                             {% endif %}
+                             {% if f.motivation_and_inspiration_the_student == 4 %}
+                            
+                            
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                            
+                              
+                             {% endif %}
+                             {% if f.motivation_and_inspiration_the_student == 5 %}
+                            
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                             
+                             {% endif %}
+                          </td>
+                          <td>
+                            9.Promoting student thinking
+                            {% if f.promoting_student_thinking == 1 %}
+                                    
+                            <span class="fa fa-star checked" style="color:orange"></span>
+                            
+                                     {% endif %}
+                                     {% if f.promoting_student_thinking == 2 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                    
+ 
+                                     {% endif %}
+                                    {% if f.promoting_student_thinking == 3 %}
+                                    
+                                    <span class="fa fa-star checked" style="color:orange"></span>
+                                    <span class="fa fa-star checked" style="color:orange"></span>
+                                    <span class="fa fa-star checked" style="color:orange"></span>
+                                   
+                                     
+                                     {% endif %}
+                                     {% if f.promoting_student_thinking == 4 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     
+                                    
+                                      
+                                     {% endif %}
+                                     {% if f.promoting_student_thinking == 5 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     
+                                     {% endif %}
+                          </td>
+                        </tr>
+                        <tr>
+                       
+                          <td>
+                            5.Creating Interest in Subject
+                            {% if f.creating_interest_in_subject == 1 %}
+                                    
+                            <span class="fa fa-star checked" style="color:orange"></span>
+                            
+                                     
+                                     {% endif %}
+                                     {% if f.creating_interest_in_subject == 2 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                    
+ 
+                                     {% endif %}
+                                    {% if f.creating_interest_in_subject == 3 %}
+                                    
+                                    <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     
+                                     
+                                     {% endif %}
+                                     {% if f.creating_interest_in_subject == 4 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                    
+                                    
+                                      
+                                     {% endif %}
+                                     {% if f.creating_interest_in_subject == 5 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     
+                                     {% endif %}
+                          </td>
+                          <td>
+                            10.Encouraging and student interaction
+                            {% if f.encouraging_and_student_interation == 1 %}
+                                    
+                            <span class="fa fa-star checked" style="color:orange"></span>
+                            
+                                     
+                                     {% endif %}
+                                     {% if f.encouraging_and_student_interation == 2 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                    
+ 
+                                     {% endif %}
+                                    {% if f.encouraging_and_student_interation == 3 %}
+                                    
+                                    <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     
+                                     
+                                     {% endif %}
+                                     {% if f.encouraging_and_student_interation == 4 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     
+                                    
+                                      
+                                     {% endif %}
+                                     {% if f.encouraging_and_student_interation == 5 %}
+                                    
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     <span class="fa fa-star checked" style="color:orange"></span>
+                                     {% endif %}
+                          </td>
+                        </tr>
+                      {% endfor %}
+                     </tbody>
+                    </table>
+                  </div>  <br> <br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+         
+    </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+       <center>
+        <footer class="footer">
+          <div >
+            <span class=" text-center ">Copyright © 2022.All Rights are reserved by <a href="https://codebook.in/" target="_blank">Codebook.in</a></span>
+            </div>
+        
+        </footer>
+    </center>
+        <!-- partial -->
+      
+      <!-- main-panel ends -->
+       
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="{% static 'admin/vendors/js/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="{% static 'admin/vendors/chart.js/Chart.min.js' %}"></script>
+  <script src="{% static 'admin/vendors/datatables.net/jquery.dataTables.js' %}"></script>
+  <script src="{% static 'admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+  <script src="{% static 'admin/js/dataTables.select.min.js' %}"></script>
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="{% static 'admin/js/off-canvas.js' %}"></script>
+  <script src="{% static 'admin/js/hoverable-collapse.js' %}"></script>
+  <script src="{% static 'admin/js/template.js' %}"></script>
+  <script src="{% static 'admin/js/settings.js' %}"></script>
+  <script src="{% static 'admin/js/todolist.js' %}"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="{% static 'admin/js/dashboard.js' %}"></script>
+  <script src="{% static 'admin/js/Chart.roundedBarCharts.js' %}"></script>
+  <!-- End custom js for this page-->
+</body>
+
+</html>
+

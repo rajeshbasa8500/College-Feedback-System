@@ -1,0 +1,578 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+    {% load static %}
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>College Feedback System</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+        <!-- <link rel="manifest" href="site.webmanifest"> -->
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'main/img/favicon.png' %}">
+        <!-- Place favicon.ico in the root directory -->
+    
+        <!-- CSS here -->
+        <link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'main/css/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="{% static 'main/css/magnific-popup.css' %}">
+        <link rel="stylesheet" href="{% static 'main/css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'main/css/themify-icons.css' %}">
+        <link rel="stylesheet" href="{% static 'main/css/nice-select.css' %}">
+        <link rel="stylesheet" href="{% static 'main/css/flaticon.css' %}">
+        <link rel="stylesheet" href="{% static 'main/css/gijgo.css' %}">
+        <link rel="stylesheet" href="{% static 'main/css/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'main/css/slicknav.css' %}">
+        <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'student/css/style22.css' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/fontawesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/fontawesome.min.css">
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+       
+        <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+        <script type="text/javascript"> 
+          function loginvalidation(){ 
+              var Email = document.myform.email 
+              var passw=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{5,16}$/; 
+              var mailformat = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/; 
+              var Feedback =  document.myform.feedback 
+              var rating1 = document.myform.a
+              var rating2 = document.myform.c
+              var rating3 = document.myform.e
+              var rating4 = document.myform.g
+              var rating5 = document.myform.i
+              var rating6 = document.myform.b
+              var rating7 = document.myform.d
+              var rating8 = document.myform.f
+              var rating9 = document.myform.h
+              var rating10 = document.myform.j
+               
+               
+              if (Feedback.value==""){ 
+                  alert("Please Enter Feedback:"); 
+                  Feedback.focus(); 
+                  return false; 
+              }  
+      
+              if (rating1.value==""){ 
+                alert("You Forgot rating of Passion And Enthusiasm To Teach:"); 
+                rating1.focus(); 
+                return false; 
+              }
+
+              if (rating2.value==""){ 
+                alert("You Forgot rating of Subject Knowledge:"); 
+                rating2.focus(); 
+                return false; 
+              }
+
+              if (rating3.value==""){ 
+                alert("You Forgot rating of Clarity and Emphasis on Concept :"); 
+                rating3.focus(); 
+                return false; 
+              }
+
+              if (rating4.value==""){ 
+                alert("You Forgot rating of Motivation and Inspiration the Student :"); 
+                rating4.focus(); 
+                return false; 
+              }
+
+              if (rating5.value==""){ 
+                alert("You Forgot rating of Creating Interest in Subject:"); 
+                rating5.focus(); 
+                return false; 
+              }
+              if (rating6.value==""){ 
+                alert("You Forgot rating of Quality of lillustrative example:"); 
+                rating6.focus(); 
+                return false; 
+              }
+
+              if (rating7.value==""){ 
+                alert("You Forgot rating of Regularity punctuality and uniform coverage of syllabus :"); 
+                rating7.focus(); 
+                return false; 
+              }
+
+              if (rating8.value==""){ 
+                alert("You Forgot rating of Discipline and control over the class :"); 
+                rating8.focus(); 
+                return false; 
+              }
+
+              if (rating9.value==""){ 
+                alert("You Forgot rating of Promoting student thinking :"); 
+                rating9.focus(); 
+                return false; 
+              }
+
+              if (rating10.value==""){ 
+                alert("You Forgot rating of Encouraging and student interaction :"); 
+                rating10.focus(); 
+                return false; 
+              }
+
+      
+
+              return true;    
+          } 
+       </script>
+</head>
+
+<body>
+    <header>
+      <div class="header-area  slider_bg_1">
+          <div id="sticky-header" class="main-header-area">
+                <div class="container-fluid p-0 " >
+                    <div class="row align-items-center no-gutters">
+                        <div class="col-xl-3 col-lg-3">
+                            <div class="logo-img">
+                                <a href="index.html">
+                                 <h4 style="color: white; font-size:x-large;"><img src="{% static 'main/img/edumark.png' %}" alt="logo">College Feedback</h4>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-7 col-lg-7 ml-auto">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a href="{% url 'student_dashboard' %}">Dashboard</a></li>&nbsp; &nbsp;
+                                        <li><a href="{% url 'student_my_profile' %}" >My Profile</a></li>&nbsp; &nbsp;
+                                        <li><a class="active" href="{% url 'student_faculty_choose' %}">Faculty Feedback</a></li>
+                                        <li><a href="{% url 'student_hostel_feedback' %}">Hostel Feedback</a></li>
+                                        <li><a href="{% url 'student_transport_choose' %}">Transport Feedback</a></li>
+                                        <li><a href="{% url 'index' %}">Logout</a></li>&nbsp; &nbsp; &nbsp; &nbsp;
+                                        </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+
+   
+  
+   <!-- bradcam_area_end -->
+   <div class="about_area " >
+    <div class="container" >
+        <div class="row" style="padding-right:50px;">
+          <div class="col-xl-12 col-lg-12" >
+            <div class="card">
+              <div class="card-body">
+                <div class="col-lg-12 grid-margin stretch-card">
+                    <div class="card">
+                      <div class="card-body">
+                         <h4 class="card-title" style="color: rgb(41, 102, 235);">Add Your Faculty Feedback</h4><hr><br>
+                         <form method="post" enctype="multipart/form-data" onsubmit = "return loginvalidation()"  name="myform">
+                          {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                     <label class="col-sm-3 col-form-label" style="color: rgb(75, 75, 77);">Faculty Name</label>
+                                       <div class="col-sm-7">
+                                        <select class="form-control" name="facultyname" enctype="multipart/form-data">
+                                        
+                                          
+                                          <option>{{i.faculty_name}}</option>
+                                          
+                                        </select>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label" style="color:  rgb(75, 75, 77)">Faculty Subject</label>
+                                    <div class="col-sm-7">
+                                      <select class="form-control" name="facultysubject">
+                                        
+                                          
+                                        <option>{{i.faculty_subject}} </option>
+                                          
+                                      </select>
+                                    </div>
+                                 </div>
+                                </div>
+                            </div><br><br>
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group row">
+                                  <label class="col-sm-3 col-form-label" style="color: rgb(75, 75, 77)">Give Feedback</label> 
+                                    <div class="col-sm-7"> 
+                                          <textarea  cols="90" name="feedback" placeholder="Enter Your Feedback Here..."></textarea> 
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                        
+                      </div>
+                    </div>
+              
+                 <!--form end--><br><br>
+                       <!-- review start --> 
+                
+                 
+                  <div class="table-responsive pt-3">
+                    <table class="table table-striped table-bordered">
+                     <thead>
+                       <tr>
+                         <th colspan="4">
+                             <center><h4 class="card-title" style="color: rgb(45, 62, 219);">Add Your Opinion</h4></center>
+                         </th>
+                       </tr>
+                     </thead>
+                      <tbody>
+                       <tr>
+                          <td>
+                        
+                             1.Passion And Enthusiasm To Teach
+                             <fieldset class="star-rating">
+                             <div class="star-rating__stars"> 
+                                <input class="star-rating__input" type="radio" name="a" value="1" id="a-1" />
+                                <label class="star-rating__label" for="a-1" aria-label="One"></label>
+                                <input class="star-rating__input" type="radio" name="a" value="2" id="a-2" />
+                                <label class="star-rating__label" for="a-2" aria-label="Two"></label>
+                                <input class="star-rating__input" type="radio" name="a" value="3" id="a-3" />
+                                <label class="star-rating__label" for="a-3" aria-label="Three"></label>
+                                <input class="star-rating__input" type="radio" name="a" value="4" id="a-4" />
+                                <label class="star-rating__label" for="a-4" aria-label="Four"></label>
+                                <input class="star-rating__input" type="radio" name="a" value="5" id="a-5" />
+                                <label class="star-rating__label" for="a-5" aria-label="Five"></label>
+                                <div class="star-rating__focus"></div>
+                              </div>
+                            </fieldset>
+                      
+                          </td>
+                          <td>
+                             6.Quality of lillustrative example
+
+                              <fieldset class="star-rating">
+                                <div class="star-rating__stars">
+                                  <input class="star-rating__input" type="radio" name="b" value="1" id="b-1" />
+                                  <label class="star-rating__label" for="b-1" aria-label="One"></label>
+                                  <input class="star-rating__input" type="radio" name="b" value="2" id="b-2" />
+                                  <label class="star-rating__label" for="b-2" aria-label="Two"></label>
+                                  <input class="star-rating__input" type="radio" name="b" value="3" id="b-3" />
+                                  <label class="star-rating__label" for="b-3" aria-label="Three"></label>
+                                  <input class="star-rating__input" type="radio" name="b" value="4" id="b-4" />
+                                  <label class="star-rating__label" for="b-4" aria-label="Four"></label>
+                                  <input class="star-rating__input" type="radio" name="b" value="5" id="b-5" />
+                                  <label class="star-rating__label" for="b-5" aria-label="Five"></label>
+                                  <div class="star-rating__focus"></div>
+                                </div>
+                              </fieldset>
+                         </td>
+                       </tr>
+                       <tr>
+                         
+                         <td>
+                             2.Subject Knowledge 
+                             <fieldset class="star-rating">
+                                <div class="star-rating__stars">
+                                  <input class="star-rating__input" type="radio" name="c" value="1" id="c-1" />
+                                  <label class="star-rating__label" for="c-1" aria-label="One"></label>
+                                  <input class="star-rating__input" type="radio" name="c" value="2" id="c-2" />
+                                  <label class="star-rating__label" for="c-2" aria-label="Two"></label>
+                                  <input class="star-rating__input" type="radio" name="c" value="3" id="c-3" />
+                                  <label class="star-rating__label" for="c-3" aria-label="Three"></label>
+                                  <input class="star-rating__input" type="radio" name="c" value="4" id="c-4" />
+                                  <label class="star-rating__label" for="c-4" aria-label="Four"></label>
+                                  <input class="star-rating__input" type="radio" name="c" value="5" id="c-5" />
+                                  <label class="star-rating__label" for="c-5" aria-label="Five"></label>
+                                  <div class="star-rating__focus"></div>
+                                </div>
+                              </fieldset>
+                         </td>
+                         <td>
+                             7.Regularity punctuality and uniform coverage of syllabus
+                             <fieldset class="star-rating">
+                                <div class="star-rating__stars">
+                                  <input class="star-rating__input" type="radio" name="d" value="1" id="d-1" />
+                                  <label class="star-rating__label" for="d-1" aria-label="One"></label>
+                                  <input class="star-rating__input" type="radio" name="d" value="2" id="d-2" />
+                                  <label class="star-rating__label" for="d-2" aria-label="Two"></label>
+                                  <input class="star-rating__input" type="radio" name="d" value="3" id="d-3" />
+                                  <label class="star-rating__label" for="d-3" aria-label="Three"></label>
+                                  <input class="star-rating__input" type="radio" name="d" value="4" id="d-4" />
+                                  <label class="star-rating__label" for="d-4" aria-label="Four"></label>
+                                  <input class="star-rating__input" type="radio" name="d" value="5" id="d-5" />
+                                  <label class="star-rating__label" for="d-5" aria-label="Five"></label>
+                                  <div class="star-rating__focus"></div>
+                                
+                              </fieldset>
+                         </td>
+                       </tr>
+                       <tr>
+                        
+                         <td>
+                             3.Clarity and Emphasis on Concept
+                             <fieldset class="star-rating">
+                                <div class="star-rating__stars">
+                                  <input class="star-rating__input" type="radio" name="e" value="1" id="e-1" />
+                                  <label class="star-rating__label" for="e-1" aria-label="One"></label>
+                                  <input class="star-rating__input" type="radio" name="e" value="2" id="e-2" />
+                                  <label class="star-rating__label" for="e-2" aria-label="Two"></label>
+                                  <input class="star-rating__input" type="radio" name="e" value="3" id="e-3" />
+                                  <label class="star-rating__label" for="e-3" aria-label="Three"></label>
+                                  <input class="star-rating__input" type="radio" name="e" value="4" id="e-4" />
+                                  <label class="star-rating__label" for="e-4" aria-label="Four"></label>
+                                  <input class="star-rating__input" type="radio" name="e" value="5" id="e-5" />
+                                  <label class="star-rating__label" for="e-5" aria-label="Five"></label>
+                                  <div class="star-rating__focus"></div>
+                                </div>
+                              </fieldset>
+                         </td>
+                         <td>
+                             8.Discipline and control over the class
+                             <fieldset class="star-rating">
+                                <div class="star-rating__stars">
+                                  <input class="star-rating__input" type="radio" name="f" value="1" id="f-1" />
+                                  <label class="star-rating__label" for="f-1" aria-label="One"></label>
+                                  <input class="star-rating__input" type="radio" name="f" value="2" id="f-2" />
+                                  <label class="star-rating__label" for="f-2" aria-label="Two"></label>
+                                  <input class="star-rating__input" type="radio" name="f" value="3" id="f-3" />
+                                  <label class="star-rating__label" for="f-3" aria-label="Three"></label>
+                                  <input class="star-rating__input" type="radio" name="f" value="4" id="f-4" />
+                                  <label class="star-rating__label" for="f-4" aria-label="Four"></label>
+                                  <input class="star-rating__input" type="radio" name="f" value="5" id="f-5" />
+                                  <label class="star-rating__label" for="f-5" aria-label="Five"></label>
+                                  <div class="star-rating__focus"></div>
+                                </div>
+                              </fieg
+                         </td>
+                       </tr>
+                       <tr>
+                         
+                         <td>
+                             4.Motivation and Inspiration the Student
+                             <fieldset class="star-rating">
+                                <div class="star-rating__stars">
+                                  <input class="star-rating__input" type="radio" name="g" value="1" id="g-1" />
+                                  <label class="star-rating__label" for="g-1" aria-label="One"></label>
+                                  <input class="star-rating__input" type="radio" name="g" value="2" id="g-2" />
+                                  <label class="star-rating__label" for="g-2" aria-label="Two"></label>
+                                  <input class="star-rating__input" type="radio" name="g" value="3" id="g-3" />
+                                  <label class="star-rating__label" for="g-3" aria-label="Three"></label>
+                                  <input class="star-rating__input" type="radio" name="g" value="4" id="g-4" />
+                                  <label class="star-rating__label" for="g-4" aria-label="Four"></label>
+                                  <input class="star-rating__input" type="radio" name="g" value="5" id="g-5" />
+                                  <label class="star-rating__label" for="g-5" aria-label="Five"></label>
+                                  <div class="star-rating__focus"></div>
+                                </div>
+                              </fieldset>
+                         </td>
+                         <td>
+                             9.Promoting student thinking
+                             <fieldset class="star-rating">
+                                <div class="star-rating__stars">
+                                  <input class="star-rating__input" type="radio" name="h" value="1" id="h-1" />
+                                  <label class="star-rating__label" for="h-1" aria-label="One"></label>
+                                  <input class="star-rating__input" type="radio" name="h" value="2" id="h-2" />
+                                  <label class="star-rating__label" for="h-2" aria-label="Two"></label>
+                                  <input class="star-rating__input" type="radio" name="h" value="3" id="h-3" />
+                                  <label class="star-rating__label" for="h-3" aria-label="Three"></label>
+                                  <input class="star-rating__input" type="radio" name="h" value="4" id="h-4" />
+                                  <label class="star-rating__label" for="h-4" aria-label="Four"></label>
+                                  <input class="star-rating__input" type="radio" name="h" value="5" id="h-5" />
+                                  <label class="star-rating__label" for="h-5" aria-label="Five"></label>
+                                  <div class="star-rating__focus"></div>
+                                
+                              </fieldset>
+                         </td>
+                       </tr>
+                       <tr>
+                        
+                         <td>
+                             5.Creating Interest in Subject
+                             <fieldset class="star-rating">
+                                <div class="star-rating__stars">
+                                  <input class="star-rating__input" type="radio" name="i" value="1" id="i-1" />
+                                  <label class="star-rating__label" for="i-1" aria-label="One"></label>
+                                  <input class="star-rating__input" type="radio" name="i" value="2" id="i-2" />
+                                  <label class="star-rating__label" for="i-2" aria-label="Two"></label>
+                                  <input class="star-rating__input" type="radio" name="i" value="3" id="i-3" />
+                                  <label class="star-rating__label" for="i-3" aria-label="Three"></label>
+                                  <input class="star-rating__input" type="radio" name="i" value="4" id="i-4" />
+                                  <label class="star-rating__label" for="i-4" aria-label="Four"></label>
+                                  <input class="star-rating__input" type="radio" name="i" value="5" id="i-5" />
+                                  <label class="star-rating__label" for="i-5" aria-label="Five"></label>
+                                  <div class="star-rating__focus"></div>
+                                </div>
+                              </fieldset>
+                         </td>
+                         <td>
+                             10.Encouraging and student interaction
+                             <fieldset class="star-rating">
+                                <div class="star-rating__stars">
+                                  <input class="star-rating__input" type="radio" name="j" value="1" id="j-1" />
+                                  <label class="star-rating__label" for="j-1" aria-label="One"></label>
+                                  <input class="star-rating__input" type="radio" name="j" value="2" id="j-2" />
+                                  <label class="star-rating__label" for="j-2" aria-label="Two"></label>
+                                  <input class="star-rating__input" type="radio" name="j" value="3" id="j-3" />
+                                  <label class="star-rating__label" for="j-3" aria-label="Three"></label>
+                                  <input class="star-rating__input" type="radio" name="j" value="4" id="j-4" />
+                                  <label class="star-rating__label" for="j-4" aria-label="Four"></label>
+                                  <input class="star-rating__input" type="radio" name="j" value="5" id="j-5" />
+                                  <label class="star-rating__label" for="j-5" aria-label="Five"></label>
+                                  <div class="star-rating__focus"></div>
+                                </div>
+                              </fieldset>
+                         </td>
+                       </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <br><br>
+                   <center><button type="submit" class="btn" style="background-color:orange;">Submit Here</button></center> 
+                  </form>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </div>
+ <!-- review end-->
+   
+           
+              
+    <br>
+      <br>
+        <br>
+           <br>                        
+ <!-- review End -->  
+     
+  <!-- footer -->
+  <footer class="footer footer_bg_1">
+    <div class="footer_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-md-6 col-lg-4">
+                    <div class="footer_widget">
+                        <div class="footer_logo">
+                            <a href="index.html">
+                                <h4 style="color: white; font-size:x-large;"><img src="{% static 'main/img/edumark.png' %}" alt="logo">College Feedback</h4>
+                               </a>
+                        </div>
+                        
+                        <div class="socail_links">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="ti-facebook"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="ti-twitter-alt"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-youtube-play"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xl-2 col-md-6 col-lg-2">
+                    <div class="footer_widget">
+                        <h3 class="footer_title">
+                            Quick Link
+                        </h3>
+                        <ul>
+                            <li><a href="{% url 'index' %}">Home</a> &nbsp; &nbsp; &nbsp; &nbsp;<a href="{% url 'faculty_login' %}">Faculty</a></li>
+                            <li><a href="{% url 'student_login' %}">Student</a> &nbsp; &nbsp; &nbsp; &nbsp;<a href="{% url 'hostel_login' %}"> Hostel</a></li>
+                            <li><a href="{% url 'admin_login' %}">Admin</a>&nbsp; &nbsp; &nbsp; &nbsp;<a href="{% url 'transport_login' %}"> Transport</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-2 offset-xl-1 col-md-6 col-lg-3">
+                    <div class="footer_widget">
+                        <h3 class="footer_title">
+                            Our Facilities
+                        </h3>
+                        <ul>
+                            <li><a href="#">Hostel</a></li>
+                            <li><a href="#">Transportation</a></li>
+                           
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6 col-lg-3">
+                    <div class="footer_widget">
+                        <h3 class="footer_title">
+                            Address
+                        </h3>
+                        <p>
+                            L.B Nagar <br>
+                            Near Metro Station<br>
+                            Snehapuri Colony
+                            info@codebook.in
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copy-right_text">
+        <div class="container">
+            <div class="footer_border"></div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <p class="copy_right text-center">
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+   Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved  <i class="fa fa-heart-o" aria-hidden="true"></i> by  <a href="https://codebook.in/" target="_blank">Codebook.in</a>
+   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+  </footer>
+<!-- footer -->
+     <!-- JS here -->
+     <script src="{% static 'main/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+     <script src="{% static 'main/js/vendor/jquery-1.12.4.min.js' %}"></script>
+     <script src="{% static 'main/js/popper.min.js' %}"></script>
+     <script src="{% static 'main/js/bootstrap.min.js' %}"></script>
+     <script src="{% static 'main/js/owl.carousel.min.js' %}"></script>
+     <script src="{% static 'main/js/isotope.pkgd.min.js' %}"></script>
+     <script src="{% static 'main/js/ajax-form.js' %}"></script>
+     <script src="{% static 'main/js/waypoints.min.js' %}"></script>
+     <script src="{% static 'main/js/jquery.counterup.min.js' %}"></script>
+     <script src="{% static 'main/js/imagesloaded.pkgd.min.js' %}"></script>
+     <script src="{% static 'main/js/scrollIt.js' %}"></script>
+     <script src="{% static 'main/js/jquery.scrollUp.min.js' %}"></script>
+     <script src="{% static 'main/js/wow.min.js' %}"></script>
+     <script src="{% static 'main/js/nice-select.min.js' %}"></script>
+     <script src="{% static 'main/js/jquery.slicknav.min.js' %}"></script>
+     <script src="{% static 'main/js/jquery.magnific-popup.min.js' %}"></script>
+     <script src="{% static 'main/js/plugins.js' %}"></script>
+     <script src="{% static 'main/js/gijgo.min.js' %}"></script>
+ 
+     <!--contact js-->
+     <script src="{% static 'main/js/contact.js' %}"></script>
+     <script src="{% static 'main/js/jquery.ajaxchimp.min.js' %}"></script>
+     <script src="{% static 'main/js/jquery.form.js' %}"></script>
+     <script src="{% static 'main/js/jquery.validate.min.js' %}"></script>
+     <script src="{% static 'main/js/mail-script.js' %}"></script>
+ 
+     <script src="{% static 'main/js/main.js' %}"></script>
+ </body>
+ 
+ </html>

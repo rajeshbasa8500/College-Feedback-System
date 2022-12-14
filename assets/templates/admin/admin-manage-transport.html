@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% load static %}
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Skydash Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{% static 'admin/vendors/feather/feather.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/vendors/ti-icons/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/vendors/css/vendor.bundle.base.css' %}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <link rel="stylesheet" href="{% static 'admin/vendors/datatables.net-bs4/dataTables.bootstrap4.css' %}">
+    <link rel="stylesheet" href="{% static 'admin/vendors/ti-icons/css/themify-icons.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/js/select.dataTables.min.css' %}">
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{% static 'admin/css/vertical-layout-light/style.css' %}">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="{% static 'admin/images/favicon.png' %}" />
+</head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <a class="navbar-brand brand-logo mr-5" href="#"><img src="" class="mr-2"/>Admin</a>
+       
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="icon-menu"></span>
+        </button>
+        {% comment %} <ul class="navbar-nav mr-lg-2">
+          <li class="nav-item nav-search d-none d-lg-block">
+            <div class="input-group">
+              <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+                <span class="input-group-text" id="search">
+                  <i class="icon-search"></i>
+                </span>
+              </div>
+              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+            </div>
+          </li>
+        </ul> {% endcomment %}
+        <ul class="navbar-nav navbar-nav-right">
+          <!-- <li class="nav-item dropdown">
+            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+              <i class="icon-bell mx-0"></i>
+              <span class="count"></span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+              <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-success">
+                    <i class="ti-info-alt mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">Application Error</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    Just now
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-warning">
+                    <i class="ti-settings mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">Settings</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    Private message
+                  </p>
+                </div>
+              </a>
+              <a class="dropdown-item preview-item">
+                <div class="preview-thumbnail">
+                  <div class="preview-icon bg-info">
+                    <i class="ti-user mx-0"></i>
+                  </div>
+                </div>
+                <div class="preview-item-content">
+                  <h6 class="preview-subject font-weight-normal">New user registration</h6>
+                  <p class="font-weight-light small-text mb-0 text-muted">
+                    2 days ago
+                  </p>
+                </div>
+              </a>
+            </div>
+          </li> -->
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                <img src="https://img.icons8.com/ios/18/undefined/settings--v1.png"/>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+             
+              <a class="dropdown-item" href="{% url 'admin_logout' %}">
+                <i class="ti-power-off text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+          
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="icon-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:partials/_settings-panel.html -->
+  
+   
+      <!-- partial -->
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin_dashboard' %}">
+                <img src="https://img.icons8.com/doodle/27/undefined/home-office.png"/>&nbsp;&nbsp;
+              <span class="menu-title">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                <img src="https://img.icons8.com/plasticine/35/undefined/teacher.png"/>&nbsp;&nbsp;
+              <span class="menu-title">Faculty</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_add_faculty' %}">Add Faculty</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_manage_faculty' %}">Manage Faculty</a></li>
+                   </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+                <img src="https://img.icons8.com/external-tulpahn-outline-color-tulpahn/28/undefined/external-student-back-to-school-tulpahn-outline-color-tulpahn.png"/>&nbsp;&nbsp;
+              <span class="menu-title">Student</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="form-elements">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="{% url 'admin_add_student' %}">Add Student</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'admin_manage_student' %}">Manage Student</a></li>
+                
+            </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+                <img src="https://img.icons8.com/external-itim2101-lineal-color-itim2101/28/undefined/external-hostel-travel-itim2101-lineal-color-itim2101.png"/>&nbsp;&nbsp;
+              <span class="menu-title">Hostel</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="charts">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_add_hostel' %}">Add Hostel</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_manage_hostel' %}">Manage Hostel</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+                <img src="https://img.icons8.com/office/26/undefined/bus.png"/>&nbsp;&nbsp;
+              <span class="menu-title">Transport</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="tables">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_add_transport' %}">Add Transport</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_manage_transport' %}">Manage Transport</a></li> 
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+                <img src="https://img.icons8.com/office/26/undefined/comments.png"/>&nbsp;&nbsp;
+              <span class="menu-title">Feedback System</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="icons">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_faculty_feedback' %}">Faculty Feedback</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_hostel_facilities_feedback' %}">Hostel Facilities<br>Feedback</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_transport_facilities_feedback' %}">Transport Facilities<br> Feedback</a></li>
+            </ul>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+                <img src="https://img.icons8.com/office/25/undefined/graph.png"/>&nbsp; &nbsp;
+              <span class="menu-title">Feedback Analysis</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_faculty_analysis' %}">Faculty Feedback<br> Analysis</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_hostel_analysis' %}">Hostel Feedback<br> Analysis</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{% url 'admin_transport_analysis' %}">Transport Feedback<br> Analysis</a></li> 
+            </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+                 <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Manage Hostel</h4>
+                  <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                      <thead>
+                        <tbody>
+                        <tr>
+                          <th>Vehicle ID</th>
+                          <th>Vehicle Type</th>
+                          <th>Driver Name</th>
+                          <th>Route</th>
+                          <th>email id</th>
+                          <th>Phone No</th>
+                          <th>Edit</th>
+                        </tr>
+                      </thead>
+                    
+                        {% for f in d %}
+                         <tr >
+                            <td>
+                              {{f.vechicle_id}}   
+                            </td>
+                            <td>
+                              {{f.vechicle_type}}
+                            </td>
+                            <td>
+                              {{f.driver_name}}
+                            </td>
+                            <td>
+                              {{f.route}}
+                            </td>
+                            <td>
+                              {{f.email}}
+                            </td>
+                            <td>
+                              {{f.mobile_no}}
+                            </td>
+                            <td>
+                              <a href="admin_update_transport/{{f.transport_id}}"><img src="https://img.icons8.com/bubbles/50/undefined/edit.png"/></a>
+                            </td>
+                          </tr>
+                          {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+             </div>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <center>
+          <footer class="footer">
+            <div >
+              <span class=" text-center ">Copyright © 2022.All Rights are reserved by <a href="https://codebook.in/" target="_blank">Codebook.in</a></span>
+              </div>
+          
+          </footer>
+      </center>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>   
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+ <!-- plugins:js -->
+ <script src="{% static 'admin/vendors/js/vendor.bundle.base.js' %}"></script>
+ <!-- endinject -->
+ <!-- Plugin js for this page -->
+ <script src="{% static 'admin/vendors/chart.js/Chart.min.js' %}"></script>
+ <script src="{% static 'admin/vendors/datatables.net/jquery.dataTables.js' %}"></script>
+ <script src="{% static 'admin/vendors/datatables.net-bs4/dataTables.bootstrap4.js' %}"></script>
+ <script src="{% static 'admin/js/dataTables.select.min.js' %}"></script>
+
+ <!-- End plugin js for this page -->
+ <!-- inject:js -->
+ <script src="{% static 'admin/js/off-canvas.js' %}"></script>
+ <script src="{% static 'admin/js/hoverable-collapse.js' %}"></script>
+ <script src="{% static 'admin/js/template.js' %}"></script>
+ <script src="{% static 'admin/js/settings.js' %}"></script>
+ <script src="{% static 'admin/js/todolist.js' %}"></script>
+ <!-- endinject -->
+ <!-- Custom js for this page-->
+ <script src="{% static 'admin/js/dashboard.js' %}"></script>
+ <script src="{% static 'admin/js/Chart.roundedBarCharts.js' %}"></script>
+ <!-- End custom js for this page-->
+</body>
+
+</html>
+
